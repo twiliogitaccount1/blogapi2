@@ -24,7 +24,7 @@ public class ReviewController
     @Autowired
     private DoctorRepository doctorRepository ;
 
-    @PostMapping
+    @PostMapping("/post")
   public ResponseEntity<Review> createReview(@RequestBody Review review)
   {
      return new ResponseEntity<>(reviewService.createReview(review) , HttpStatus.CREATED) ;
@@ -44,8 +44,6 @@ public class ReviewController
 
       double averageRating = totalRating / reviews.size();
      double ratingPercentage = (averageRating / 5.0) * 100.0 ;
-
-
      DoctorDto dto = new DoctorDto();
 
      dto.setDoctor(doctor);
@@ -53,13 +51,5 @@ public class ReviewController
      dto.setRatingPercentage(ratingPercentage);
 
     return  new ResponseEntity<>(dto  , HttpStatus.OK);
-
-
-
  }
-
-
-
-
-
 }
